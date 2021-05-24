@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Pod       # type of object we are creating
+metadata:      # Data about the object in form of dictionary
+  name: mywebserver-pod
+  labels:
+    app: mywebserver
+    type: frontend
+spec:        # Depend on the kind is different
+  containers:    #List/array (it can contain multiple containers)
+    - name: nginx
+      image: nginx
+      env:
+      - name: POSTGRES_PASSWORD
+        value: mysecretpassword #10.106.1.12
+
+    
+
+
+
+
+      #To run the file:
+      #kubectl apply -f pod.yaml  or kubectl create -f pod.yaml

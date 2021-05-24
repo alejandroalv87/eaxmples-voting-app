@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-service		# we can have labels as well
+spec:
+  type: LoadBalancer		#NodePort, ClusterIP or LoadBalancer
+ # selector:
+ #   app: hello-world 	#all pods with this value:key will be part of service (taken from the pod definition file (.yaml)), the service selects all pods as endpoints to forward external requests  
+  ports:
+    - protocol: TCP
+      targetPort: 80 	# the one from the pod (if not mentioned it will be taken from port)
+      port: 8080		# the one from the service 
+      nodePort: 30036	# the one from Node (external accessible)#
+
+      

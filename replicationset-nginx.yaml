@@ -1,0 +1,26 @@
+apiVersion: apps/v1 
+kind: ReplicaSet
+metadata:
+  name: nginx-rs
+  labels:
+    app: myapp 
+spec:
+  replicas: 3
+  selector:        # matching the label from pods (created before) where key is app and value is mywebserver. since replicaset can manage pods not created by the replicaset creation
+    matchLabels:
+      app: mywebserver
+  template:
+    metadata:      # Data about the object in form of dictionary
+      name: mywebserver-pod
+      labels:
+        app: mywebserver
+        type: frontend
+    spec:        # Depend on the kind is different
+      containers:    #List/array (it can contain multiple containers)
+      - name: mywebserver
+        image: nginx
+        env:
+        - name: POSTGRES_PASSWORD
+          value: mysecretpassword
+
+

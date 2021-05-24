@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: worker-app-pod
+  labels: 
+    name: worker-app-pod
+    app: demo-voting-app    #Application name for all components so we can group them but different components will have different name
+spec: 
+  containers:
+    - name: worker
+      image: kodekloud/examplevotingapp_worker:v1 

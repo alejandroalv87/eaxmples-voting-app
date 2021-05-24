@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx2-service		# we can have labels as well
+spec:
+  type: NodePort	  	#NodePort, ClusterIP or LoadBalancer
+  selector:
+    app: mywebserver
+  ports:              #array that is why it has a - 
+    - protocol: TCP
+      targetPort: 80 	# the one from the pod (if not mentioned it will be taken from port)
+      port: 80		  # the one from the service 
+      nodePort: 30034

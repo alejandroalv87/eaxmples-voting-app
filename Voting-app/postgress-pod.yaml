@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: postgres-pod
+  labels: 
+    name: postgres-pod
+    app: demo-voting-app    #Application name for all components so we can group them but different components will have different name
+spec: 
+  containers:
+    - name: postgres
+      image: postgres 
+      ports:
+        - containerPort: 5432  # port in which application listen 5432 default for postgress)
+      env:
+        - name: POSTGRES_USER   # details below are hardcoded in the code better use secrets and variables
+          value: "postgres"
+        - name: POSTGRES_PASSWORD
+          value: "postgres"

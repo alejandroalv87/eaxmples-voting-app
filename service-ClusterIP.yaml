@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend		# we can have labels as well
+spec:
+  type: ClusterIP	  	#NodePort, ClusterIP(default) or LoadBalancer
+  selector:           #link service to a set of pods
+    app: mywebserver
+    type: frontend
+  ports:              #array that is why it has a - 
+    - targetPort: 80 	# the port where the backend is exposed 
+      port: 80		  # where service is exposed 
+      
+  

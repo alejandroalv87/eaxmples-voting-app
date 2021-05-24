@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: worker-app-deploy
+  labels:
+    name: worker-app-deploy
+    app: demo-voting-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: worker-app-pod
+      app: demo-voting-app 
+  template:                   # copied from metadata and spec of pod.yaml
+    metadata:
+      name: worker-app-pod
+      labels: 
+        name: worker-app-pod
+        app: demo-voting-app    #Application name for all components so we can group them but different components will have different name
+    spec: 
+      containers:
+        - name: worker
+          image: kodekloud/examplevotingapp_worker:v1 

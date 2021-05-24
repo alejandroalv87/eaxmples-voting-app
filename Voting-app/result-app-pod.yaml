@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: result-app-pod
+  labels: 
+    name: result-app-pod
+    app: demo-voting-app    #Application name for all components so we can group them but different components will have different name
+spec: 
+  containers:
+    - name: result-app
+      image: kodekloud/examplevotingapp_result:v1 
+      ports:
+        - containerPort: 80  # port in which application listen
